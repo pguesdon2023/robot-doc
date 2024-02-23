@@ -1,0 +1,3313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Robot Framework keywords</title>
+        <link href="bootstrap.min.css" rel="stylesheet">
+        <style type="text/css">
+
+/* Minimal style sheet for the HTML output of Docutils.                    */
+/*                                                                         */
+/* :Author: Günter Milde, based on html4css1.css by David Goodger          */
+/* :Id: $Id: minimal.css 9079 2022-06-19 14:00:56Z milde $                                                               */
+/* :Copyright: © 2015, 2021 Günter Milde.                                  */
+/* :License: Released under the terms of the `2-Clause BSD license`_,      */
+/*    in short:                                                            */
+/*                                                                         */
+/*    Copying and distribution of this file, with or without modification, */
+/*    are permitted in any medium without royalty provided the copyright   */
+/*    notice and this notice are preserved.                                */
+/*                                                                         */
+/*    This file is offered as-is, without any warranty.                    */
+/*                                                                         */
+/* .. _2-Clause BSD license: http://www.spdx.org/licenses/BSD-2-Clause     */
+
+/* This CSS3 stylesheet defines rules for Docutils elements without        */
+/* HTML equivalent. It is required to make the document semantics visible. */
+/*                                                                         */
+/* .. _validates: http://jigsaw.w3.org/css-validator/validator$link        */
+
+/* titles */
+p.topic-title,
+p.admonition-title,
+p.system-message-title {
+  font-weight: bold;
+}
+p.sidebar-title,
+p.rubric {
+  font-weight: bold;
+  font-size: larger;
+}
+p.rubric {
+  color: maroon;
+}
+p.subtitle,
+p.section-subtitle,
+p.sidebar-subtitle {
+  font-weight: bold;
+  margin-top: -0.5em;
+}
+h1 + p.subtitle {
+  font-size: 1.6em;
+}
+a.toc-backref {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Warnings, Errors */
+.system-messages h2,
+.system-message-title,
+span.problematic {
+  color: red;
+}
+
+/* Inline Literals */
+.docutils.literal {
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+/* do not wrap at hyphens and similar: */
+.literal > span.pre { white-space: nowrap; }
+
+/* Lists */
+
+/* compact and simple lists: no margin between items */
+.simple  li, .simple  ul, .simple  ol,
+.compact li, .compact ul, .compact ol,
+.simple  > li p, dl.simple  > dd,
+.compact > li p, dl.compact > dd {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* Nested Paragraphs */
+p:first-child { margin-top: 0; }
+p:last-child { margin-bottom: 0; }
+details > p:last-child { margin-bottom: 1em; }
+
+/* Table of Contents */
+.contents ul.auto-toc { /* section numbers present */
+  list-style-type: none;
+}
+
+/* Enumerated Lists */
+ol.arabic     { list-style: decimal }
+ol.loweralpha { list-style: lower-alpha }
+ol.upperalpha { list-style: upper-alpha }
+ol.lowerroman { list-style: lower-roman }
+ol.upperroman { list-style: upper-roman }
+
+/* Definition Lists and Derivatives */
+dt .classifier { font-style: italic }
+dt .classifier:before {
+  font-style: normal;
+  margin: 0.5em;
+  content: ":";
+}
+/* Field Lists and similar */
+/* bold field name, content starts on the same line */
+dl.field-list,
+dl.option-list,
+dl.docinfo {
+  display: flow-root;
+}
+dl.field-list > dt,
+dl.option-list > dt,
+dl.docinfo > dt {
+  font-weight: bold;
+  clear: left;
+  float: left;
+  margin: 0;
+  padding: 0;
+  padding-right: 0.2em;
+}
+/* Offset for field content (corresponds to the --field-name-limit option) */
+dl.field-list > dd,
+dl.option-list > dd,
+dl.docinfo > dd {
+  margin-left:  9em; /* ca. 14 chars in the test examples, fit all Docinfo fields */
+}
+/* start nested lists on new line */
+dd > dl:first-child,
+dd > ul:first-child,
+dd > ol:first-child {
+  clear: left;
+}
+/* start field-body on a new line after long field names */
+dl.field-list > dd > *:first-child,
+dl.option-list > dd > *:first-child
+{
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+}
+
+/* Bibliographic Fields (docinfo) */
+dl.docinfo pre.address {
+  font: inherit;
+  margin: 0.5em 0;
+}
+dl.docinfo > dd.authors > p { margin: 0; }
+
+/* Option Lists */
+dl.option-list > dt { font-weight: normal; }
+span.option { white-space: nowrap; }
+
+/* Footnotes and Citations  */
+
+.footnote, .citation { margin: 1em 0; } /* default paragraph skip (Firefox) */
+/* hanging indent */
+.citation { padding-left: 2em; }
+.footnote { padding-left: 1.7em; }
+.footnote.superscript { padding-left: 1.0em; }
+.citation > .label { margin-left: -2em; }
+.footnote > .label { margin-left: -1.7em; }
+.footnote.superscript > .label { margin-left: -1.0em; }
+
+.footnote > .label + *,
+.citation > .label + * {
+  display: inline-block;
+  margin-top: 0;
+  vertical-align: top;
+}
+.footnote > .backrefs + *,
+.citation > .backrefs + * {
+  margin-top: 0;
+}
+.footnote > .label + p, .footnote > .backrefs + p,
+.citation > .label + p, .citation > .backrefs + p {
+  display: inline;
+  vertical-align: inherit;
+}
+
+.backrefs { user-select: none; }
+.backrefs > a { font-style: italic; }
+
+/* superscript footnotes */
+a[role="doc-noteref"].superscript,
+.footnote.superscript > .label,
+.footnote.superscript > .backrefs {
+  vertical-align: super;
+  font-size: smaller;
+  line-height: 1;
+}
+a[role="doc-noteref"].superscript > .fn-bracket,
+.footnote.superscript > .label > .fn-bracket {
+  /* hide brackets in display but leave for copy/paste */
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+}
+[role="doc-noteref"].superscript + [role="doc-noteref"].superscript {
+  padding-left: 0.15em; /* separate consecutive footnote references */
+  /* TODO: unfortunately, "+" also selects with text between the references. */
+}
+
+/* Alignment */
+.align-left   {
+  text-align: left;
+  margin-right: auto;
+}
+.align-center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.align-right  {
+  text-align: right;
+  margin-left: auto;
+}
+.align-top    { vertical-align: top; }
+.align-middle { vertical-align: middle; }
+.align-bottom { vertical-align: bottom; }
+
+/* reset inner alignment in figures and tables */
+figure.align-left, figure.align-right,
+table.align-left, table.align-center, table.align-right {
+  text-align: inherit;
+}
+
+/* Text Blocks */
+.topic { margin: 1em 2em; }
+.sidebar,
+.admonition,
+.system-message {
+  margin: 1em 2em;
+  border: thin solid;
+  padding: 0.5em 1em;
+}
+div.line-block { display: block; }
+div.line-block div.line-block, pre { margin-left: 2em; }
+
+/* Code line numbers: dropped when copying text from the page */
+pre.code .ln { display: none; }
+pre.code code:before {
+  content: attr(data-lineno); /* …, none) fallback not supported by any browser */
+  color: gray;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+}
+td, th {
+  border: thin solid silver;
+  padding: 0 1ex;
+}
+.borderless td, .borderless th {
+  border: 0;
+  padding: 0;
+  padding-right: 0.5em /* separate table cells */
+}
+
+table > caption {
+  text-align: left;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+table.captionbelow {
+  caption-side: bottom;
+}
+
+/* Document Header and Footer */
+header { border-bottom: 1px solid black; }
+footer { border-top: 1px solid black; }
+
+/* Images are block-level by default in Docutils */
+/* New HTML5 block elements: set display for older browsers */
+img, header, footer, main, aside, nav, section, figure, video, details {
+  display: block;
+}
+/* inline images */
+p img, p video, figure img, figure video {
+  display: inline;
+}
+
+</style>
+<style type="text/css">
+
+/* CSS31_ style sheet for the output of Docutils HTML writers.             */
+/* Rules for easy reading and pre-defined style variants.                  */
+/*                                                                         */
+/* :Author: Günter Milde, based on html4css1.css by David Goodger          */
+/* :Id: $Id: plain.css 9338 2023-04-08 21:08:47Z milde $                                                               */
+/* :Copyright: © 2015 Günter Milde.                                        */
+/* :License: Released under the terms of the `2-Clause BSD license`_,      */
+/*    in short:                                                            */
+/*                                                                         */
+/*    Copying and distribution of this file, with or without modification, */
+/*    are permitted in any medium without royalty provided the copyright   */
+/*    notice and this notice are preserved.                                */
+/*                                                                         */
+/*    This file is offered as-is, without any warranty.                    */
+/*                                                                         */
+/* .. _2-Clause BSD license: http://www.spdx.org/licenses/BSD-2-Clause     */
+/* .. _CSS3: https://www.w3.org/Style/CSS/                                 */
+
+
+/* Document Structure */
+/* ****************** */
+
+/* "page layout" */
+body {
+  margin: 0;
+  background-color: #dbdbdb;
+  --field-indent: 9em; /* default indent of fields in field lists */
+}
+main, footer, header {
+  line-height:1.6;
+  /* avoid long lines --> better reading */
+  /* optimum is 45…75 characters/line <http://webtypography.net/2.1.2> */
+  /* OTOH: lines should not be too short because of missing hyphenation, */
+  max-width: 50rem;
+  padding: 1px 2%; /* 1px on top avoids grey bar above title (mozilla) */
+  margin: auto;
+}
+main {
+  counter-reset: table figure;
+  background-color: white;
+}
+footer, header {
+  font-size: smaller;
+  padding: 0.5em 2%;
+  border: none;
+}
+
+/* Table of Contents */
+ul.auto-toc > li > p {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+nav.contents ul {
+  padding-left: 1em;
+}
+main > nav.contents ul ul ul ul:not(.auto-toc) {
+  list-style-type: '\2B29\ ';
+}
+main > nav.contents ul ul ul ul ul:not(.auto-toc) {
+  list-style-type: '\2B1D\ ';
+}
+
+/* Transitions */
+hr.docutils {
+  width: 80%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  clear: both;
+}
+
+/* Paragraphs */
+
+/* vertical space (parskip) */
+p, ol, ul, dl, li,
+div.line-block,
+.footnote, .citation,
+div > math,
+table {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+h1, h2, h3, h4, h5, h6,
+dd, details > p:last-child {
+  margin-bottom: 0.5em;
+}
+
+/* Lists */
+/* ===== */
+
+/* Definition Lists */
+/* Indent lists nested in definition lists */
+dd > ul:only-child, dd > ol:only-child { padding-left: 1em; }
+
+/* Description Lists */
+/* styled like in most dictionaries, encyclopedias etc. */
+dl.description {
+  display: flow-root;
+}
+dl.description > dt {
+  font-weight: bold;
+  clear: left;
+  float: left;
+  margin: 0;
+  padding: 0;
+  padding-right: 0.3em;
+}
+dl.description > dd:after {
+  display: table;
+  content: "";
+  clear: left; /* clearfix for empty descriptions */
+}
+
+/* Field Lists */
+
+dl.field-list > dd,
+dl.docinfo > dd {
+  margin-left: var(--field-indent); /* adapted in media queries or HTML */
+}
+
+/* example for custom field-name width */
+dl.field-list.narrow > dd {
+  --field-indent: 5em;
+}
+/* run-in: start field-body on same line after long field names */
+dl.field-list.run-in > dd p {
+  display: block;
+}
+
+/* Bibliographic Fields */
+
+/* generally, bibliographic fields use dl.docinfo */
+/* but dedication and abstract are placed into divs */
+div.abstract p.topic-title {
+  text-align: center;
+}
+div.dedication {
+  margin: 2em 5em;
+  text-align: center;
+  font-style: italic;
+}
+div.dedication p.topic-title {
+  font-style: normal;
+}
+
+/* disclosures */
+details { padding-left: 1em; }
+summary { margin-left: -1em; }
+
+/* Text Blocks */
+/* =========== */
+
+/* Literal Blocks */
+pre.literal-block, pre.doctest-block,
+pre.math, pre.code {
+  font-family: monospace;
+}
+
+/* Block Quotes and Topics */
+bockquote { margin: 1em 2em; }
+blockquote p.attribution,
+.topic p.attribution {
+  text-align: right;
+  margin-left: 20%;
+}
+
+/* Tables */
+/* ====== */
+
+/* th { vertical-align: bottom; } */
+
+table tr { text-align: left; }
+
+/* "booktabs" style (no vertical lines) */
+table.booktabs {
+  border: 0;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.booktabs * {
+  border: 0;
+}
+table.booktabs th {
+  border-bottom: thin solid;
+}
+
+/* numbered tables (counter defined in div.document) */
+table.numbered > caption:before {
+  counter-increment: table;
+  content: "Table " counter(table) ": ";
+  font-weight: bold;
+}
+
+/* Explicit Markup Blocks */
+/* ====================== */
+
+/* Footnotes and Citations */
+/* ----------------------- */
+
+/* line on the left */
+.footnote-list {
+  border-left: solid thin;
+  padding-left: 0.25em;
+}
+
+/* Directives */
+/* ---------- */
+
+/* Body Elements */
+/* ~~~~~~~~~~~~~ */
+
+/* Images and Figures */
+
+/* let content flow to the side of aligned images and figures */
+figure.align-left,
+img.align-left,
+video.align-left,
+object.align-left {
+  clear: left;
+  float: left;
+  margin-right: 1em;
+}
+figure.align-right,
+img.align-right,
+video.align-right,
+object.align-right {
+  clear: right;
+  float: right;
+  margin-left: 1em;
+}
+/* Stop floating sidebars, images and figures */
+h1, h2, h3, h4, footer, header { clear: both; }
+
+/* Numbered figures */
+figure.numbered > figcaption > p:before {
+  counter-increment: figure;
+  content: "Figure " counter(figure) ": ";
+  font-weight: bold;
+}
+
+/* Admonitions and System Messages */
+.caution p.admonition-title,
+.attention p.admonition-title,
+.danger p.admonition-title,
+.error p.admonition-title,
+.warning p.admonition-title,
+div.error {
+  color: red;
+}
+
+/* Sidebar */
+/* Move right. In a layout with fixed margins, */
+/* it can be moved into the margin.            */
+aside.sidebar {
+  width: 30%;
+  max-width: 26em;
+  float: right;
+  clear: right;
+  margin-left: 1em;
+  margin-right: -1%;
+  background-color: #fffffa;
+}
+
+
+/* Code */
+pre.code { padding: 0.7ex }
+pre.code, code { background-color: #eeeeee }
+/* basic highlighting: for a complete scheme, see */
+/* https://docutils.sourceforge.io/sandbox/stylesheets/ */
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+/* Math */
+/* for math-output=MathML (for math-output=HTML, see math.css) */
+math .boldsymbol {
+  font-weight: bold;
+}
+mstyle.mathscr, mi.mathscr {
+  font-family: STIX, XITSMathJax_Script, rsfs10,
+               "Asana Math", Garamond, cursive;
+}
+
+/* Epigraph           */
+/* Highlights         */
+/* Pull-Quote         */
+/* Compound Paragraph */
+/* Container          */
+
+/* Inline Markup */
+/* ============= */
+
+sup, sub { line-height: 0.8; } /* do not add leading for lines with sup/sub */
+
+/* Inline Literals                                          */
+/* possible values: normal, nowrap, pre, pre-wrap, pre-line */
+/*   span.docutils.literal { white-space: pre-wrap; }       */
+
+/* Hyperlink References */
+a { text-decoration: none; }
+
+/* External Targets       */
+/*   span.target.external */
+/* Internal Targets       */
+/*   span.target.internal */
+/* Footnote References    */
+/*   a[role="doc-noteref"] */
+/* Citation References    */
+/*   a.citation-reference */
+
+</style>
+
+</head>
+<body>
+
+    <div class="container">
+        <h1>List of all Robot Framework keywords:</h1>
+
+        
+        <div class="card m-3">
+            <div class="card-header">
+                <h2>BuiltIn</h2>
+            </div>
+            <ul class="list-group">
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Call Method">Call Method</a></dt>
+                        <dd><p>Calls the named method of the given object with the provided arguments.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Catenate">Catenate</a></dt>
+                        <dd><p>Catenates the given items together and returns the resulted string.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Comment">Comment</a></dt>
+                        <dd><p>Displays the given messages in the log file as keyword arguments.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Continue For Loop">Continue For Loop</a></dt>
+                        <dd><p>Skips the current FOR loop iteration and continues from the next.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Continue For Loop If">Continue For Loop If</a></dt>
+                        <dd><p>Skips the current FOR loop iteration if the <span class="docutils literal">condition</span> is true.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Convert To Binary">Convert To Binary</a></dt>
+                        <dd><p>Converts the given item to a binary string.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Convert To Boolean">Convert To Boolean</a></dt>
+                        <dd><p>Converts the given item to Boolean true or false.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Convert To Bytes">Convert To Bytes</a></dt>
+                        <dd><p>Converts the given <span class="docutils literal">input</span> to bytes according to the <span class="docutils literal">input_type</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Convert To Hex">Convert To Hex</a></dt>
+                        <dd><p>Converts the given item to a hexadecimal string.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Convert To Integer">Convert To Integer</a></dt>
+                        <dd><p>Converts the given item to an integer number.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Convert To Number">Convert To Number</a></dt>
+                        <dd><p>Converts the given item to a floating point number.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Convert To Octal">Convert To Octal</a></dt>
+                        <dd><p>Converts the given item to an octal string.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Convert To String">Convert To String</a></dt>
+                        <dd><p>Converts the given item to a Unicode string.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Create Dictionary">Create Dictionary</a></dt>
+                        <dd><p>Creates and returns a dictionary based on the given <span class="docutils literal">items</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Create List">Create List</a></dt>
+                        <dd><p>Returns a list containing given items.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Evaluate">Evaluate</a></dt>
+                        <dd><p>Evaluates the given expression in Python and returns the result.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Exit For Loop">Exit For Loop</a></dt>
+                        <dd><p>Stops executing the enclosing FOR loop.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Exit For Loop If">Exit For Loop If</a></dt>
+                        <dd><p>Stops executing the enclosing FOR loop if the <span class="docutils literal">condition</span> is true.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Fail">Fail</a></dt>
+                        <dd><p>Fails the test with the given message and optionally alters its tags.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Fatal Error">Fatal Error</a></dt>
+                        <dd><p>Stops the whole test execution.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Get Count">Get Count</a></dt>
+                        <dd><p>Returns and logs how many times <span class="docutils literal">item</span> is found from <span class="docutils literal">container</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Get Length">Get Length</a></dt>
+                        <dd><p>Returns and logs the length of the given item as an integer.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Get Library Instance">Get Library Instance</a></dt>
+                        <dd><p>Returns the currently active instance of the specified library.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Get Time">Get Time</a></dt>
+                        <dd><p>Returns the given time in the requested format.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Get Variable Value">Get Variable Value</a></dt>
+                        <dd><p>Returns variable value or <span class="docutils literal">default</span> if the variable does not exist.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Get Variables">Get Variables</a></dt>
+                        <dd><p>Returns a dictionary containing all variables in the current scope.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Import Library">Import Library</a></dt>
+                        <dd><p>Imports a library with the given name and optional arguments.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Import Resource">Import Resource</a></dt>
+                        <dd><p>Imports a resource file with the given path.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Import Variables">Import Variables</a></dt>
+                        <dd><p>Imports a variable file with the given path and optional arguments.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Keyword Should Exist">Keyword Should Exist</a></dt>
+                        <dd><p>Fails unless the given keyword exists in the current scope.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Length Should Be">Length Should Be</a></dt>
+                        <dd><p>Verifies that the length of the given item is correct.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Log">Log</a></dt>
+                        <dd><p>Logs the given message with the given level.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Log Many">Log Many</a></dt>
+                        <dd><p>Logs the given messages as separate entries using the INFO level.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Log To Console">Log To Console</a></dt>
+                        <dd><p>Logs the given message to the console.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Log Variables">Log Variables</a></dt>
+                        <dd><p>Logs all variables in the current scope with given log level.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#No Operation">No Operation</a></dt>
+                        <dd><p>Does absolutely nothing.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Pass Execution">Pass Execution</a></dt>
+                        <dd><p>Skips rest of the current test, setup, or teardown with PASS status.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Pass Execution If">Pass Execution If</a></dt>
+                        <dd><p>Conditionally skips rest of the current test, setup, or teardown with PASS status.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Regexp Escape">Regexp Escape</a></dt>
+                        <dd><p>Returns each argument string escaped for use as a regular expression.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Reload Library">Reload Library</a></dt>
+                        <dd><p>Rechecks what keywords the specified library provides.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Remove Tags">Remove Tags</a></dt>
+                        <dd><p>Removes given <span class="docutils literal">tags</span> from the current test or all tests in a suite.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Repeat Keyword">Repeat Keyword</a></dt>
+                        <dd><p>Executes the specified keyword multiple times.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Replace Variables">Replace Variables</a></dt>
+                        <dd><p>Replaces variables in the given text with their current values.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Reset Log Level">Reset Log Level</a></dt>
+                        <dd><p>Resets the log level to the original value.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Return From Keyword">Return From Keyword</a></dt>
+                        <dd><p>Returns from the enclosing user keyword.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Return From Keyword If">Return From Keyword If</a></dt>
+                        <dd><p>Returns from the enclosing user keyword if <span class="docutils literal">condition</span> is true.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Run Keyword">Run Keyword</a></dt>
+                        <dd><p>Executes the given keyword with the given arguments.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Run Keyword And Continue On Failure">Run Keyword And Continue On Failure</a></dt>
+                        <dd><p>Runs the keyword and continues execution even if a failure occurs.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Run Keyword And Expect Error">Run Keyword And Expect Error</a></dt>
+                        <dd><p>Runs the keyword and checks that the expected error occurred.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Run Keyword And Ignore Error">Run Keyword And Ignore Error</a></dt>
+                        <dd><p>Runs the given keyword with the given arguments and ignores possible error.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Run Keyword And Return">Run Keyword And Return</a></dt>
+                        <dd><p>Runs the specified keyword and returns from the enclosing user keyword.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Run Keyword And Return If">Run Keyword And Return If</a></dt>
+                        <dd><p>Runs the specified keyword and returns from the enclosing user keyword.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Run Keyword And Return Status">Run Keyword And Return Status</a></dt>
+                        <dd><p>Runs the given keyword with given arguments and returns the status as a Boolean value.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Run Keyword And Warn On Failure">Run Keyword And Warn On Failure</a></dt>
+                        <dd><p>Runs the specified keyword logs a warning if the keyword fails.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Run Keyword If">Run Keyword If</a></dt>
+                        <dd><p>Runs the given keyword with the given arguments, if <span class="docutils literal">condition</span> is true.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Run Keyword If All Tests Passed">Run Keyword If All Tests Passed</a></dt>
+                        <dd><p>Runs the given keyword with the given arguments, if all tests passed.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Run Keyword If Any Tests Failed">Run Keyword If Any Tests Failed</a></dt>
+                        <dd><p>Runs the given keyword with the given arguments, if one or more tests failed.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Run Keyword If Test Failed">Run Keyword If Test Failed</a></dt>
+                        <dd><p>Runs the given keyword with the given arguments, if the test failed.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Run Keyword If Test Passed">Run Keyword If Test Passed</a></dt>
+                        <dd><p>Runs the given keyword with the given arguments, if the test passed.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Run Keyword If Timeout Occurred">Run Keyword If Timeout Occurred</a></dt>
+                        <dd><p>Runs the given keyword if either a test or a keyword timeout has occurred.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Run Keyword Unless">Run Keyword Unless</a></dt>
+                        <dd><p><em>DEPRECATED since RF 5.0. Use Native IF/ELSE or `Run Keyword If` instead.</em></p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Run Keywords">Run Keywords</a></dt>
+                        <dd><p>Executes all the given keywords in a sequence.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Set Global Variable">Set Global Variable</a></dt>
+                        <dd><p>Makes a variable available globally in all tests and suites.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Set Library Search Order">Set Library Search Order</a></dt>
+                        <dd><p>Sets the resolution order to use when a name matches multiple keywords.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Set Local Variable">Set Local Variable</a></dt>
+                        <dd><p>Makes a variable available everywhere within the local scope.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Set Log Level">Set Log Level</a></dt>
+                        <dd><p>Sets the log threshold to the specified level.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Set Suite Documentation">Set Suite Documentation</a></dt>
+                        <dd><p>Sets documentation for the current test suite.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Set Suite Metadata">Set Suite Metadata</a></dt>
+                        <dd><p>Sets metadata for the current test suite.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Set Suite Variable">Set Suite Variable</a></dt>
+                        <dd><p>Makes a variable available everywhere within the scope of the current suite.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Set Tags">Set Tags</a></dt>
+                        <dd><p>Adds given <span class="docutils literal">tags</span> for the current test or all tests in a suite.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Set Task Variable">Set Task Variable</a></dt>
+                        <dd><p>Makes a variable available everywhere within the scope of the current task.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Set Test Documentation">Set Test Documentation</a></dt>
+                        <dd><p>Sets documentation for the current test case.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Set Test Message">Set Test Message</a></dt>
+                        <dd><p>Sets message for the current test case.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Set Test Variable">Set Test Variable</a></dt>
+                        <dd><p>Makes a variable available everywhere within the scope of the current test.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Set Variable">Set Variable</a></dt>
+                        <dd><p>Returns the given values which can then be assigned to a variables.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Set Variable If">Set Variable If</a></dt>
+                        <dd><p>Sets variable based on the given condition.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Be Empty">Should Be Empty</a></dt>
+                        <dd><p>Verifies that the given item is empty.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Be Equal">Should Be Equal</a></dt>
+                        <dd><p>Fails if the given objects are unequal.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Be Equal As Integers">Should Be Equal As Integers</a></dt>
+                        <dd><p>Fails if objects are unequal after converting them to integers.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Be Equal As Numbers">Should Be Equal As Numbers</a></dt>
+                        <dd><p>Fails if objects are unequal after converting them to real numbers.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Be Equal As Strings">Should Be Equal As Strings</a></dt>
+                        <dd><p>Fails if objects are unequal after converting them to strings.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Be True">Should Be True</a></dt>
+                        <dd><p>Fails if the given condition is not true.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Contain">Should Contain</a></dt>
+                        <dd><p>Fails if <span class="docutils literal">container</span> does not contain <span class="docutils literal">item</span> one or more times.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Contain Any">Should Contain Any</a></dt>
+                        <dd><p>Fails if <span class="docutils literal">container</span> does not contain any of the <span class="docutils literal">*items</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Contain X Times">Should Contain X Times</a></dt>
+                        <dd><p>Fails if <span class="docutils literal">container</span> does not contain <span class="docutils literal">item</span> <span class="docutils literal">count</span> times.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should End With">Should End With</a></dt>
+                        <dd><p>Fails if the string <span class="docutils literal">str1</span> does not end with the string <span class="docutils literal">str2</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Match">Should Match</a></dt>
+                        <dd><p>Fails if the given <span class="docutils literal">string</span> does not match the given <span class="docutils literal">pattern</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Match Regexp">Should Match Regexp</a></dt>
+                        <dd><p>Fails if <span class="docutils literal">string</span> does not match <span class="docutils literal">pattern</span> as a regular expression.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Not Be Empty">Should Not Be Empty</a></dt>
+                        <dd><p>Verifies that the given item is not empty.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Not Be Equal">Should Not Be Equal</a></dt>
+                        <dd><p>Fails if the given objects are equal.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Not Be Equal As Integers">Should Not Be Equal As Integers</a></dt>
+                        <dd><p>Fails if objects are equal after converting them to integers.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Not Be Equal As Numbers">Should Not Be Equal As Numbers</a></dt>
+                        <dd><p>Fails if objects are equal after converting them to real numbers.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Not Be Equal As Strings">Should Not Be Equal As Strings</a></dt>
+                        <dd><p>Fails if objects are equal after converting them to strings.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Not Be True">Should Not Be True</a></dt>
+                        <dd><p>Fails if the given condition is true.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Not Contain">Should Not Contain</a></dt>
+                        <dd><p>Fails if <span class="docutils literal">container</span> contains <span class="docutils literal">item</span> one or more times.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Not Contain Any">Should Not Contain Any</a></dt>
+                        <dd><p>Fails if <span class="docutils literal">container</span> contains one or more of the <span class="docutils literal">*items</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Not End With">Should Not End With</a></dt>
+                        <dd><p>Fails if the string <span class="docutils literal">str1</span> ends with the string <span class="docutils literal">str2</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Not Match">Should Not Match</a></dt>
+                        <dd><p>Fails if the given <span class="docutils literal">string</span> matches the given <span class="docutils literal">pattern</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Not Match Regexp">Should Not Match Regexp</a></dt>
+                        <dd><p>Fails if <span class="docutils literal">string</span> matches <span class="docutils literal">pattern</span> as a regular expression.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Not Start With">Should Not Start With</a></dt>
+                        <dd><p>Fails if the string <span class="docutils literal">str1</span> starts with the string <span class="docutils literal">str2</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Should Start With">Should Start With</a></dt>
+                        <dd><p>Fails if the string <span class="docutils literal">str1</span> does not start with the string <span class="docutils literal">str2</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Skip">Skip</a></dt>
+                        <dd><p>Skips the rest of the current test.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Skip If">Skip If</a></dt>
+                        <dd><p>Skips the rest of the current test if the <span class="docutils literal">condition</span> is True.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Sleep">Sleep</a></dt>
+                        <dd><p>Pauses the test executed for the given time.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Variable Should Exist">Variable Should Exist</a></dt>
+                        <dd><p>Fails unless the given variable exists within the current scope.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Variable Should Not Exist">Variable Should Not Exist</a></dt>
+                        <dd><p>Fails if the given variable exists within the current scope.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Wait Until Keyword Succeeds">Wait Until Keyword Succeeds</a></dt>
+                        <dd><p>Runs the specified keyword and retries if it fails.</p>
+</dd>
+                    </dl>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="card m-3">
+            <div class="card-header">
+                <h2>Collections</h2>
+            </div>
+            <ul class="list-group">
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Append To List">Append To List</a></dt>
+                        <dd><p>Adds <span class="docutils literal">values</span> to the end of <span class="docutils literal">list</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Combine Lists">Combine Lists</a></dt>
+                        <dd><p>Combines the given <span class="docutils literal">lists</span> together and returns the result.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Convert To Dictionary">Convert To Dictionary</a></dt>
+                        <dd><p>Converts the given <span class="docutils literal">item</span> to a Python <span class="docutils literal">dict</span> type.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Convert To List">Convert To List</a></dt>
+                        <dd><p>Converts the given <span class="docutils literal">item</span> to a Python <span class="docutils literal">list</span> type.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Copy Dictionary">Copy Dictionary</a></dt>
+                        <dd><p>Returns a copy of the given dictionary.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Copy List">Copy List</a></dt>
+                        <dd><p>Returns a copy of the given list.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Count Values In List">Count Values In List</a></dt>
+                        <dd><p>Returns the number of occurrences of the given <span class="docutils literal">value</span> in <span class="docutils literal">list</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Dictionaries Should Be Equal">Dictionaries Should Be Equal</a></dt>
+                        <dd><p>Fails if the given dictionaries are not equal.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Dictionary Should Contain Item">Dictionary Should Contain Item</a></dt>
+                        <dd><p>An item of <span class="docutils literal">key</span> / <span class="docutils literal">value</span> must be found in a <span class="docutils literal">dictionary</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Dictionary Should Contain Key">Dictionary Should Contain Key</a></dt>
+                        <dd><p>Fails if <span class="docutils literal">key</span> is not found from <span class="docutils literal">dictionary</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Dictionary Should Contain Sub Dictionary">Dictionary Should Contain Sub Dictionary</a></dt>
+                        <dd><p>Fails unless all items in <span class="docutils literal">dict2</span> are found from <span class="docutils literal">dict1</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Dictionary Should Contain Value">Dictionary Should Contain Value</a></dt>
+                        <dd><p>Fails if <span class="docutils literal">value</span> is not found from <span class="docutils literal">dictionary</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Dictionary Should Not Contain Key">Dictionary Should Not Contain Key</a></dt>
+                        <dd><p>Fails if <span class="docutils literal">key</span> is found from <span class="docutils literal">dictionary</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Dictionary Should Not Contain Value">Dictionary Should Not Contain Value</a></dt>
+                        <dd><p>Fails if <span class="docutils literal">value</span> is found from <span class="docutils literal">dictionary</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Get Dictionary Items">Get Dictionary Items</a></dt>
+                        <dd><p>Returns items of the given <span class="docutils literal">dictionary</span> as a list.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Get Dictionary Keys">Get Dictionary Keys</a></dt>
+                        <dd><p>Returns keys of the given <span class="docutils literal">dictionary</span> as a list.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Get Dictionary Values">Get Dictionary Values</a></dt>
+                        <dd><p>Returns values of the given <span class="docutils literal">dictionary</span> as a list.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Get From Dictionary">Get From Dictionary</a></dt>
+                        <dd><p>Returns a value from the given <span class="docutils literal">dictionary</span> based on the given <span class="docutils literal">key</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Get From List">Get From List</a></dt>
+                        <dd><p>Returns the value specified with an <span class="docutils literal">index</span> from <span class="docutils literal">list</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Get Index From List">Get Index From List</a></dt>
+                        <dd><p>Returns the index of the first occurrence of the <span class="docutils literal">value</span> on the list.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Get Match Count">Get Match Count</a></dt>
+                        <dd><p>Returns the count of matches to <span class="docutils literal">pattern</span> in <span class="docutils literal">list</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Get Matches">Get Matches</a></dt>
+                        <dd><p>Returns a list of matches to <span class="docutils literal">pattern</span> in <span class="docutils literal">list</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Get Slice From List">Get Slice From List</a></dt>
+                        <dd><p>Returns a slice of the given list between <span class="docutils literal">start</span> and <span class="docutils literal">end</span> indexes.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Insert Into List">Insert Into List</a></dt>
+                        <dd><p>Inserts <span class="docutils literal">value</span> into <span class="docutils literal">list</span> to the position specified with <span class="docutils literal">index</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Keep In Dictionary">Keep In Dictionary</a></dt>
+                        <dd><p>Keeps the given <span class="docutils literal">keys</span> in the <span class="docutils literal">dictionary</span> and removes all other.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#List Should Contain Sub List">List Should Contain Sub List</a></dt>
+                        <dd><p>Fails if not all elements in <span class="docutils literal">list2</span> are found in <span class="docutils literal">list1</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#List Should Contain Value">List Should Contain Value</a></dt>
+                        <dd><p>Fails if the <span class="docutils literal">value</span> is not found from <span class="docutils literal">list</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#List Should Not Contain Duplicates">List Should Not Contain Duplicates</a></dt>
+                        <dd><p>Fails if any element in the <span class="docutils literal">list</span> is found from it more than once.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#List Should Not Contain Value">List Should Not Contain Value</a></dt>
+                        <dd><p>Fails if the <span class="docutils literal">value</span> is found from <span class="docutils literal">list</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Lists Should Be Equal">Lists Should Be Equal</a></dt>
+                        <dd><p>Fails if given lists are unequal.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Log Dictionary">Log Dictionary</a></dt>
+                        <dd><p>Logs the size and contents of the <span class="docutils literal">dictionary</span> using given <span class="docutils literal">level</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Log List">Log List</a></dt>
+                        <dd><p>Logs the length and contents of the <span class="docutils literal">list</span> using given <span class="docutils literal">level</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Pop From Dictionary">Pop From Dictionary</a></dt>
+                        <dd><p>Pops the given <span class="docutils literal">key</span> from the <span class="docutils literal">dictionary</span> and returns its value.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Remove Duplicates">Remove Duplicates</a></dt>
+                        <dd><p>Returns a list without duplicates based on the given <span class="docutils literal">list</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Remove From Dictionary">Remove From Dictionary</a></dt>
+                        <dd><p>Removes the given <span class="docutils literal">keys</span> from the <span class="docutils literal">dictionary</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Remove From List">Remove From List</a></dt>
+                        <dd><p>Removes and returns the value specified with an <span class="docutils literal">index</span> from <span class="docutils literal">list</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Remove Values From List">Remove Values From List</a></dt>
+                        <dd><p>Removes all occurrences of given <span class="docutils literal">values</span> from <span class="docutils literal">list</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Reverse List">Reverse List</a></dt>
+                        <dd><p>Reverses the given list in place.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Set List Value">Set List Value</a></dt>
+                        <dd><p>Sets the value of <span class="docutils literal">list</span> specified by <span class="docutils literal">index</span> to the given <span class="docutils literal">value</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Set To Dictionary">Set To Dictionary</a></dt>
+                        <dd><p>Adds the given <span class="docutils literal">key_value_pairs</span> and/or <span class="docutils literal">items</span> to the <span class="docutils literal">dictionary</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Should Contain Match">Should Contain Match</a></dt>
+                        <dd><p>Fails if <span class="docutils literal">pattern</span> is not found in <span class="docutils literal">list</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Should Not Contain Match">Should Not Contain Match</a></dt>
+                        <dd><p>Fails if <span class="docutils literal">pattern</span> is found in <span class="docutils literal">list</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Collections.html#Sort List">Sort List</a></dt>
+                        <dd><p>Sorts the given list in place.</p>
+</dd>
+                    </dl>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="card m-3">
+            <div class="card-header">
+                <h2>DateTime</h2>
+            </div>
+            <ul class="list-group">
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/DateTime.html#Add Time To Date">Add Time To Date</a></dt>
+                        <dd><p>Adds time to date and returns the resulting date.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/DateTime.html#Add Time To Time">Add Time To Time</a></dt>
+                        <dd><p>Adds time to another time and returns the resulting time.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/DateTime.html#Convert Date">Convert Date</a></dt>
+                        <dd><p>Converts between supported <cite>date formats</cite>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/DateTime.html#Convert Time">Convert Time</a></dt>
+                        <dd><p>Converts between supported <cite>time formats</cite>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/DateTime.html#Get Current Date">Get Current Date</a></dt>
+                        <dd><p>Returns current local or UTC time with an optional increment.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/DateTime.html#Subtract Date From Date">Subtract Date From Date</a></dt>
+                        <dd><p>Subtracts date from another date and returns time between.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/DateTime.html#Subtract Time From Date">Subtract Time From Date</a></dt>
+                        <dd><p>Subtracts time from date and returns the resulting date.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/DateTime.html#Subtract Time From Time">Subtract Time From Time</a></dt>
+                        <dd><p>Subtracts time from another time and returns the resulting time.</p>
+</dd>
+                    </dl>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="card m-3">
+            <div class="card-header">
+                <h2>Dialogs</h2>
+            </div>
+            <ul class="list-group">
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Dialogs.html#Execute Manual Step">Execute Manual Step</a></dt>
+                        <dd><p>Pauses execution until user sets the keyword status.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Dialogs.html#Get Selection From User">Get Selection From User</a></dt>
+                        <dd><p>Pauses execution and asks user to select a value.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Dialogs.html#Get Selections From User">Get Selections From User</a></dt>
+                        <dd><p>Pauses execution and asks user to select multiple values.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Dialogs.html#Get Value From User">Get Value From User</a></dt>
+                        <dd><p>Pauses execution and asks user to input a value.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Dialogs.html#Pause Execution">Pause Execution</a></dt>
+                        <dd><p>Pauses execution until user clicks <span class="docutils literal">Ok</span> button.</p>
+</dd>
+                    </dl>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="card m-3">
+            <div class="card-header">
+                <h2>OperatingSystem</h2>
+            </div>
+            <ul class="list-group">
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Append To Environment Variable">Append To Environment Variable</a></dt>
+                        <dd><p>Appends given <span class="docutils literal">values</span> to environment variable <span class="docutils literal">name</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Append To File">Append To File</a></dt>
+                        <dd><p>Appends the given content to the specified file.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Copy Directory">Copy Directory</a></dt>
+                        <dd><p>Copies the source directory into the destination.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Copy File">Copy File</a></dt>
+                        <dd><p>Copies the source file into the destination.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Copy Files">Copy Files</a></dt>
+                        <dd><p>Copies specified files to the target directory.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Count Directories In Directory">Count Directories In Directory</a></dt>
+                        <dd><p>Wrapper for <cite>Count Items In Directory</cite> returning only directory count.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Count Files In Directory">Count Files In Directory</a></dt>
+                        <dd><p>Wrapper for <cite>Count Items In Directory</cite> returning only file count.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Count Items In Directory">Count Items In Directory</a></dt>
+                        <dd><p>Returns and logs the number of all items in the given directory.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Create Binary File">Create Binary File</a></dt>
+                        <dd><p>Creates a binary file with the given content.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Create Directory">Create Directory</a></dt>
+                        <dd><p>Creates the specified directory.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Create File">Create File</a></dt>
+                        <dd><p>Creates a file with the given content and encoding.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Directory Should Be Empty">Directory Should Be Empty</a></dt>
+                        <dd><p>Fails unless the specified directory is empty.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Directory Should Exist">Directory Should Exist</a></dt>
+                        <dd><p>Fails unless the given path points to an existing directory.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Directory Should Not Be Empty">Directory Should Not Be Empty</a></dt>
+                        <dd><p>Fails if the specified directory is empty.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Directory Should Not Exist">Directory Should Not Exist</a></dt>
+                        <dd><p>Fails if the given path points to an existing file.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Empty Directory">Empty Directory</a></dt>
+                        <dd><p>Deletes all the content from the given directory.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Environment Variable Should Be Set">Environment Variable Should Be Set</a></dt>
+                        <dd><p>Fails if the specified environment variable is not set.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Environment Variable Should Not Be Set">Environment Variable Should Not Be Set</a></dt>
+                        <dd><p>Fails if the specified environment variable is set.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#File Should Be Empty">File Should Be Empty</a></dt>
+                        <dd><p>Fails unless the specified file is empty.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#File Should Exist">File Should Exist</a></dt>
+                        <dd><p>Fails unless the given <span class="docutils literal">path</span> points to an existing file.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#File Should Not Be Empty">File Should Not Be Empty</a></dt>
+                        <dd><p>Fails if the specified file is empty.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#File Should Not Exist">File Should Not Exist</a></dt>
+                        <dd><p>Fails if the given path points to an existing file.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Get Binary File">Get Binary File</a></dt>
+                        <dd><p>Returns the contents of a specified file.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Get Environment Variable">Get Environment Variable</a></dt>
+                        <dd><p>Returns the value of an environment variable with the given name.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Get Environment Variables">Get Environment Variables</a></dt>
+                        <dd><p>Returns currently available environment variables as a dictionary.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Get File">Get File</a></dt>
+                        <dd><p>Returns the contents of a specified file.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Get File Size">Get File Size</a></dt>
+                        <dd><p>Returns and logs file size as an integer in bytes.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Get Modified Time">Get Modified Time</a></dt>
+                        <dd><p>Returns the last modification time of a file or directory.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Grep File">Grep File</a></dt>
+                        <dd><p>Returns the lines of the specified file that match the <span class="docutils literal">pattern</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Join Path">Join Path</a></dt>
+                        <dd><p>Joins the given path part(s) to the given base path.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Join Paths">Join Paths</a></dt>
+                        <dd><p>Joins given paths with base and returns resulted paths.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#List Directories In Directory">List Directories In Directory</a></dt>
+                        <dd><p>Wrapper for <cite>List Directory</cite> that returns only directories.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#List Directory">List Directory</a></dt>
+                        <dd><p>Returns and logs items in a directory, optionally filtered with <span class="docutils literal">pattern</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#List Files In Directory">List Files In Directory</a></dt>
+                        <dd><p>Wrapper for <cite>List Directory</cite> that returns only files.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Log Environment Variables">Log Environment Variables</a></dt>
+                        <dd><p>Logs all environment variables using the given log level.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Log File">Log File</a></dt>
+                        <dd><p>Wrapper for <cite>Get File</cite> that also logs the returned file.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Move Directory">Move Directory</a></dt>
+                        <dd><p>Moves the source directory into a destination.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Move File">Move File</a></dt>
+                        <dd><p>Moves the source file into the destination.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Move Files">Move Files</a></dt>
+                        <dd><p>Moves specified files to the target directory.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Normalize Path">Normalize Path</a></dt>
+                        <dd><p>Normalizes the given path.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Remove Directory">Remove Directory</a></dt>
+                        <dd><p>Removes the directory pointed to by the given <span class="docutils literal">path</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Remove Environment Variable">Remove Environment Variable</a></dt>
+                        <dd><p>Deletes the specified environment variable.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Remove File">Remove File</a></dt>
+                        <dd><p>Removes a file with the given path.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Remove Files">Remove Files</a></dt>
+                        <dd><p>Uses <cite>Remove File</cite> to remove multiple files one-by-one.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Run">Run</a></dt>
+                        <dd><p>Runs the given command in the system and returns the output.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Run And Return Rc">Run And Return Rc</a></dt>
+                        <dd><p>Runs the given command in the system and returns the return code.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Run And Return Rc And Output">Run And Return Rc And Output</a></dt>
+                        <dd><p>Runs the given command in the system and returns the RC and output.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Set Environment Variable">Set Environment Variable</a></dt>
+                        <dd><p>Sets an environment variable to a specified value.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Set Modified Time">Set Modified Time</a></dt>
+                        <dd><p>Sets the file modification and access times.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Should Exist">Should Exist</a></dt>
+                        <dd><p>Fails unless the given path (file or directory) exists.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Should Not Exist">Should Not Exist</a></dt>
+                        <dd><p>Fails if the given path (file or directory) exists.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Split Extension">Split Extension</a></dt>
+                        <dd><p>Splits the extension from the given path.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Split Path">Split Path</a></dt>
+                        <dd><p>Splits the given path from the last path separator (<span class="docutils literal">/</span> or <span class="docutils literal">\</span>).</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Touch">Touch</a></dt>
+                        <dd><p>Emulates the UNIX touch command.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Wait Until Created">Wait Until Created</a></dt>
+                        <dd><p>Waits until the given file or directory is created.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/OperatingSystem.html#Wait Until Removed">Wait Until Removed</a></dt>
+                        <dd><p>Waits until the given file or directory is removed.</p>
+</dd>
+                    </dl>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="card m-3">
+            <div class="card-header">
+                <h2>Process</h2>
+            </div>
+            <ul class="list-group">
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Process.html#Get Process Id">Get Process Id</a></dt>
+                        <dd><p>Returns the process ID (pid) of the process as an integer.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Process.html#Get Process Object">Get Process Object</a></dt>
+                        <dd><p>Return the underlying <span class="docutils literal">subprocess.Popen</span> object.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Process.html#Get Process Result">Get Process Result</a></dt>
+                        <dd><p>Returns the specified <cite>result object</cite> or some of its attributes.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Process.html#Is Process Running">Is Process Running</a></dt>
+                        <dd><p>Checks is the process running or not.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Process.html#Join Command Line">Join Command Line</a></dt>
+                        <dd><p>Joins arguments into one command line string.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Process.html#Process Should Be Running">Process Should Be Running</a></dt>
+                        <dd><p>Verifies that the process is running.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Process.html#Process Should Be Stopped">Process Should Be Stopped</a></dt>
+                        <dd><p>Verifies that the process is not running.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Process.html#Run Process">Run Process</a></dt>
+                        <dd><p>Runs a process and waits for it to complete.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Process.html#Send Signal To Process">Send Signal To Process</a></dt>
+                        <dd><p>Sends the given <span class="docutils literal">signal</span> to the specified process.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Process.html#Split Command Line">Split Command Line</a></dt>
+                        <dd><p>Splits command line string into a list of arguments.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Process.html#Start Process">Start Process</a></dt>
+                        <dd><p>Starts a new process on background.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Process.html#Switch Process">Switch Process</a></dt>
+                        <dd><p>Makes the specified process the current <cite>active process</cite>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Process.html#Terminate All Processes">Terminate All Processes</a></dt>
+                        <dd><p>Terminates all still running processes started by this library.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Process.html#Terminate Process">Terminate Process</a></dt>
+                        <dd><p>Stops the process gracefully or forcefully.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Process.html#Wait For Process">Wait For Process</a></dt>
+                        <dd><p>Waits for the process to complete or to reach the given timeout.</p>
+</dd>
+                    </dl>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="card m-3">
+            <div class="card-header">
+                <h2>Screenshot</h2>
+            </div>
+            <ul class="list-group">
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Screenshot.html#Set Screenshot Directory">Set Screenshot Directory</a></dt>
+                        <dd><p>Sets the directory where screenshots are saved.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Screenshot.html#Take Screenshot">Take Screenshot</a></dt>
+                        <dd><p>Takes a screenshot in JPEG format and embeds it into the log file.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Screenshot.html#Take Screenshot Without Embedding">Take Screenshot Without Embedding</a></dt>
+                        <dd><p>Takes a screenshot and links it from the log file.</p>
+</dd>
+                    </dl>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="card m-3">
+            <div class="card-header">
+                <h2>String</h2>
+            </div>
+            <ul class="list-group">
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Convert To Lower Case">Convert To Lower Case</a></dt>
+                        <dd><p>Converts string to lower case.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Convert To Title Case">Convert To Title Case</a></dt>
+                        <dd><p>Converts string to title case.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Convert To Upper Case">Convert To Upper Case</a></dt>
+                        <dd><p>Converts string to upper case.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Decode Bytes To String">Decode Bytes To String</a></dt>
+                        <dd><p>Decodes the given <span class="docutils literal">bytes</span> to a string using the given <span class="docutils literal">encoding</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Encode String To Bytes">Encode String To Bytes</a></dt>
+                        <dd><p>Encodes the given <span class="docutils literal">string</span> to bytes using the given <span class="docutils literal">encoding</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Fetch From Left">Fetch From Left</a></dt>
+                        <dd><p>Returns contents of the <span class="docutils literal">string</span> before the first occurrence of <span class="docutils literal">marker</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Fetch From Right">Fetch From Right</a></dt>
+                        <dd><p>Returns contents of the <span class="docutils literal">string</span> after the last occurrence of <span class="docutils literal">marker</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Format String">Format String</a></dt>
+                        <dd><p>Formats a <span class="docutils literal">template</span> using the given <span class="docutils literal">positional</span> and <span class="docutils literal">named</span> arguments.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Generate Random String">Generate Random String</a></dt>
+                        <dd><p>Generates a string with a desired <span class="docutils literal">length</span> from the given <span class="docutils literal">chars</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Get Line">Get Line</a></dt>
+                        <dd><p>Returns the specified line from the given <span class="docutils literal">string</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Get Line Count">Get Line Count</a></dt>
+                        <dd><p>Returns and logs the number of lines in the given string.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Get Lines Containing String">Get Lines Containing String</a></dt>
+                        <dd><p>Returns lines of the given <span class="docutils literal">string</span> that contain the <span class="docutils literal">pattern</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Get Lines Matching Pattern">Get Lines Matching Pattern</a></dt>
+                        <dd><p>Returns lines of the given <span class="docutils literal">string</span> that match the <span class="docutils literal">pattern</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Get Lines Matching Regexp">Get Lines Matching Regexp</a></dt>
+                        <dd><p>Returns lines of the given <span class="docutils literal">string</span> that match the regexp <span class="docutils literal">pattern</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Get Regexp Matches">Get Regexp Matches</a></dt>
+                        <dd><p>Returns a list of all non-overlapping matches in the given string.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Get Substring">Get Substring</a></dt>
+                        <dd><p>Returns a substring from <span class="docutils literal">start</span> index to <span class="docutils literal">end</span> index.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Remove String">Remove String</a></dt>
+                        <dd><p>Removes all <span class="docutils literal">removables</span> from the given <span class="docutils literal">string</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Remove String Using Regexp">Remove String Using Regexp</a></dt>
+                        <dd><p>Removes <span class="docutils literal">patterns</span> from the given <span class="docutils literal">string</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Replace String">Replace String</a></dt>
+                        <dd><p>Replaces <span class="docutils literal">search_for</span> in the given <span class="docutils literal">string</span> with <span class="docutils literal">replace_with</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Replace String Using Regexp">Replace String Using Regexp</a></dt>
+                        <dd><p>Replaces <span class="docutils literal">pattern</span> in the given <span class="docutils literal">string</span> with <span class="docutils literal">replace_with</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Should Be Byte String">Should Be Byte String</a></dt>
+                        <dd><p>Fails if the given <span class="docutils literal">item</span> is not a byte string.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Should Be Lower Case">Should Be Lower Case</a></dt>
+                        <dd><p>Fails if the given <span class="docutils literal">string</span> is not in lower case.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Should Be String">Should Be String</a></dt>
+                        <dd><p>Fails if the given <span class="docutils literal">item</span> is not a string.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Should Be Title Case">Should Be Title Case</a></dt>
+                        <dd><p>Fails if given <span class="docutils literal">string</span> is not title.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Should Be Unicode String">Should Be Unicode String</a></dt>
+                        <dd><p>Fails if the given <span class="docutils literal">item</span> is not a Unicode string.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Should Be Upper Case">Should Be Upper Case</a></dt>
+                        <dd><p>Fails if the given <span class="docutils literal">string</span> is not in upper case.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Should Not Be String">Should Not Be String</a></dt>
+                        <dd><p>Fails if the given <span class="docutils literal">item</span> is a string.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Split String">Split String</a></dt>
+                        <dd><p>Splits the <span class="docutils literal">string</span> using <span class="docutils literal">separator</span> as a delimiter string.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Split String From Right">Split String From Right</a></dt>
+                        <dd><p>Splits the <span class="docutils literal">string</span> using <span class="docutils literal">separator</span> starting from right.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Split String To Characters">Split String To Characters</a></dt>
+                        <dd><p>Splits the given <span class="docutils literal">string</span> to characters.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Split To Lines">Split To Lines</a></dt>
+                        <dd><p>Splits the given string to lines.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/String.html#Strip String">Strip String</a></dt>
+                        <dd><p>Remove leading and/or trailing whitespaces from the given string.</p>
+</dd>
+                    </dl>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="card m-3">
+            <div class="card-header">
+                <h2>Telnet</h2>
+            </div>
+            <ul class="list-group">
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Close All Connections">Close All Connections</a></dt>
+                        <dd><p>Closes all open connections and empties the connection cache.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Close Connection">Close Connection</a></dt>
+                        <dd><p>Closes the current Telnet connection.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Execute Command">Execute Command</a></dt>
+                        <dd><p>Executes the given <span class="docutils literal">command</span> and reads, logs, and returns everything until the prompt.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Login">Login</a></dt>
+                        <dd><p>Logs in to the Telnet server with the given user information.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Open Connection">Open Connection</a></dt>
+                        <dd><p>Opens a new Telnet connection to the given host and port.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Read">Read</a></dt>
+                        <dd><p>Reads everything that is currently available in the output.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Read Until">Read Until</a></dt>
+                        <dd><p>Reads output until <span class="docutils literal">expected</span> text is encountered.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Read Until Prompt">Read Until Prompt</a></dt>
+                        <dd><p>Reads output until the prompt is encountered.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Read Until Regexp">Read Until Regexp</a></dt>
+                        <dd><p>Reads output until any of the <span class="docutils literal">expected</span> regular expressions match.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Set Default Log Level">Set Default Log Level</a></dt>
+                        <dd><p>Sets the default log level used for <cite>logging</cite> in the current connection.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Set Encoding">Set Encoding</a></dt>
+                        <dd><p>Sets the encoding to use for <cite>writing and reading</cite> in the current connection.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Set Newline">Set Newline</a></dt>
+                        <dd><p>Sets the newline used by <cite>Write</cite> keyword in the current connection.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Set Prompt">Set Prompt</a></dt>
+                        <dd><p>Sets the prompt used by <cite>Read Until Prompt</cite> and <cite>Login</cite> in the current connection.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Set Telnetlib Log Level">Set Telnetlib Log Level</a></dt>
+                        <dd><p>Sets the log level used for <cite>logging</cite> in the underlying <span class="docutils literal">telnetlib</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Set Timeout">Set Timeout</a></dt>
+                        <dd><p>Sets the timeout used for waiting output in the current connection.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Switch Connection">Switch Connection</a></dt>
+                        <dd><p>Switches between active connections using an index or an alias.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Write">Write</a></dt>
+                        <dd><p>Writes the given text plus a newline into the connection.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Write Bare">Write Bare</a></dt>
+                        <dd><p>Writes the given text, and nothing else, into the connection.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Write Control Character">Write Control Character</a></dt>
+                        <dd><p>Writes the given control character into the connection.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/Telnet.html#Write Until Expected Output">Write Until Expected Output</a></dt>
+                        <dd><p>Writes the given <span class="docutils literal">text</span> repeatedly, until <span class="docutils literal">expected</span> appears in the output.</p>
+</dd>
+                    </dl>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div class="card m-3">
+            <div class="card-header">
+                <h2>XML</h2>
+            </div>
+            <ul class="list-group">
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Add Element">Add Element</a></dt>
+                        <dd><p>Adds a child element to the specified element.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Clear Element">Clear Element</a></dt>
+                        <dd><p>Clears the contents of the specified element.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Copy Element">Copy Element</a></dt>
+                        <dd><p>Returns a copy of the specified element.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Element Attribute Should Be">Element Attribute Should Be</a></dt>
+                        <dd><p>Verifies that the specified attribute is <span class="docutils literal">expected</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Element Attribute Should Match">Element Attribute Should Match</a></dt>
+                        <dd><p>Verifies that the specified attribute matches <span class="docutils literal">expected</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Element Should Exist">Element Should Exist</a></dt>
+                        <dd><p>Verifies that one or more element match the given <span class="docutils literal">xpath</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Element Should Not Exist">Element Should Not Exist</a></dt>
+                        <dd><p>Verifies that no element match the given <span class="docutils literal">xpath</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Element Should Not Have Attribute">Element Should Not Have Attribute</a></dt>
+                        <dd><p>Verifies that the specified element does not have attribute <span class="docutils literal">name</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Element Text Should Be">Element Text Should Be</a></dt>
+                        <dd><p>Verifies that the text of the specified element is <span class="docutils literal">expected</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Element Text Should Match">Element Text Should Match</a></dt>
+                        <dd><p>Verifies that the text of the specified element matches <span class="docutils literal">expected</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Element To String">Element To String</a></dt>
+                        <dd><p>Returns the string representation of the specified element.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Elements Should Be Equal">Elements Should Be Equal</a></dt>
+                        <dd><p>Verifies that the given <span class="docutils literal">source</span> element is equal to <span class="docutils literal">expected</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Elements Should Match">Elements Should Match</a></dt>
+                        <dd><p>Verifies that the given <span class="docutils literal">source</span> element matches <span class="docutils literal">expected</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Evaluate Xpath">Evaluate Xpath</a></dt>
+                        <dd><p>Evaluates the given xpath expression and returns results.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Get Child Elements">Get Child Elements</a></dt>
+                        <dd><p>Returns the child elements of the specified element as a list.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Get Element">Get Element</a></dt>
+                        <dd><p>Returns an element in the <span class="docutils literal">source</span> matching the <span class="docutils literal">xpath</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Get Element Attribute">Get Element Attribute</a></dt>
+                        <dd><p>Returns the named attribute of the specified element.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Get Element Attributes">Get Element Attributes</a></dt>
+                        <dd><p>Returns all attributes of the specified element.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Get Element Count">Get Element Count</a></dt>
+                        <dd><p>Returns and logs how many elements the given <span class="docutils literal">xpath</span> matches.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Get Element Text">Get Element Text</a></dt>
+                        <dd><p>Returns all text of the element, possibly whitespace normalized.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Get Elements">Get Elements</a></dt>
+                        <dd><p>Returns a list of elements in the <span class="docutils literal">source</span> matching the <span class="docutils literal">xpath</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Get Elements Texts">Get Elements Texts</a></dt>
+                        <dd><p>Returns text of all elements matching <span class="docutils literal">xpath</span> as a list.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Log Element">Log Element</a></dt>
+                        <dd><p>Logs the string representation of the specified element.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Parse Xml">Parse Xml</a></dt>
+                        <dd><p>Parses the given XML file or string into an element structure.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Remove Element">Remove Element</a></dt>
+                        <dd><p>Removes the element matching <span class="docutils literal">xpath</span> from the <span class="docutils literal">source</span> structure.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Remove Element Attribute">Remove Element Attribute</a></dt>
+                        <dd><p>Removes attribute <span class="docutils literal">name</span> from the specified element.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Remove Element Attributes">Remove Element Attributes</a></dt>
+                        <dd><p>Removes all attributes from the specified element.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Remove Elements">Remove Elements</a></dt>
+                        <dd><p>Removes all elements matching <span class="docutils literal">xpath</span> from the <span class="docutils literal">source</span> structure.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Remove Elements Attribute">Remove Elements Attribute</a></dt>
+                        <dd><p>Removes attribute <span class="docutils literal">name</span> from the specified elements.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Remove Elements Attributes">Remove Elements Attributes</a></dt>
+                        <dd><p>Removes all attributes from the specified elements.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Save Xml">Save Xml</a></dt>
+                        <dd><p>Saves the given element to the specified file.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Set Element Attribute">Set Element Attribute</a></dt>
+                        <dd><p>Sets attribute <span class="docutils literal">name</span> of the specified element to <span class="docutils literal">value</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Set Element Tag">Set Element Tag</a></dt>
+                        <dd><p>Sets the tag of the specified element.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Set Element Text">Set Element Text</a></dt>
+                        <dd><p>Sets text and/or tail text of the specified element.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Set Elements Attribute">Set Elements Attribute</a></dt>
+                        <dd><p>Sets attribute <span class="docutils literal">name</span> of the specified elements to <span class="docutils literal">value</span>.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Set Elements Tag">Set Elements Tag</a></dt>
+                        <dd><p>Sets the tag of the specified elements.</p>
+</dd>
+                    </dl>
+                </li>
+                
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="http://robotframework.org/robotframework/latest/libraries/XML.html#Set Elements Text">Set Elements Text</a></dt>
+                        <dd><p>Sets text and/or tail text of the specified elements.</p>
+</dd>
+                    </dl>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+
+</body>
+</html>

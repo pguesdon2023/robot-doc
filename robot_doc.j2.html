@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Robot Framework keywords</title>
+        <link href="bootstrap.min.css" rel="stylesheet">
+        {{ style }}
+</head>
+<body>
+
+    <div class="container">
+        <h1>List of all Robot Framework keywords:</h1>
+
+        {% for lib_name, lib in keywords.items() %}
+        <div class="card m-3">
+            <div class="card-header">
+                <h2>{{ lib_name }}</h2>
+            </div>
+            <ul class="list-group">
+                {% for kw in lib %}
+                <li class="list-group-item">
+                    <dl>
+                        <dt><a href="{{ kw.link }}">{{ kw.name }}</a></dt>
+                        <dd>{{ kw.shortdoc }}</dd>
+                    </dl>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
